@@ -17,8 +17,12 @@ class MyApp extends StatelessWidget {
       designSize: Size(720, 1560),
       builder: () => MaterialApp(
         theme:
-            ThemeData(primaryColor: Color(0xffeb690b), fontFamily: "Verdana"),
-        home: Sec2(),
+            ThemeData(
+                primaryColor: Color(0xffeb690b),
+                accentColor: Color(0xff616161),
+                fontFamily: "Verdana"
+            ),
+        home: License(),
       ),
     );
   }

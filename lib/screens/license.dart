@@ -1,7 +1,8 @@
 import 'dart:ui';
 
-import 'package:chainlock/screens/intro1.dart';
+import 'package:chainlock/screens/intro-main.dart';
 import 'package:chainlock/widgets/custom-text.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -76,7 +77,7 @@ class _LicenseState extends State<License> {
                 if (isChecked) {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Info()),
+                    CupertinoPageRoute(builder: (context) => IntroMain()),
                   );
                 }
               },

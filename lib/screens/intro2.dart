@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Intro2 extends StatelessWidget {
-  const Intro2({Key key}) : super(key: key);
+  final PageController controller;
+  const Intro2({Key key,@required this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +46,7 @@ class Intro2 extends StatelessWidget {
                     ),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        primary: Color(0xff616161),
+                        primary: Theme.of(context).accentColor,
                         padding: EdgeInsets.symmetric(
                           vertical: ScreenUtil().setHeight(20),
                           horizontal: ScreenUtil().setHeight(250),
@@ -56,10 +57,7 @@ class Intro2 extends StatelessWidget {
                         ),
                       ),
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => Intro3()),
-                        );
+                        controller.animateToPage(2, duration: Duration(milliseconds: 400), curve: Curves.easeIn);
                       },
                       child: Text("Next"),
                     ),

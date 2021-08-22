@@ -1,5 +1,6 @@
 import 'package:chainlock/screens/home.dart';
 import 'package:chainlock/widgets/custom-text.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -45,7 +46,7 @@ class Intro3 extends StatelessWidget {
                     ),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        primary: Color(0xff616161),
+                        primary: Theme.of(context).accentColor,
                         padding: EdgeInsets.symmetric(
                           vertical: ScreenUtil().setHeight(20),
                           horizontal: ScreenUtil().setHeight(250),
@@ -58,7 +59,7 @@ class Intro3 extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Home()),
+                          CupertinoPageRoute(builder: (context) => Home()),
                         );
                       },
                       child: Text("Next"),

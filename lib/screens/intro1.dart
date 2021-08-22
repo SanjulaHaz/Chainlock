@@ -1,11 +1,10 @@
-import 'package:chainlock/screens/intro2.dart';
-import 'package:chainlock/screens/license.dart';
 import 'package:chainlock/widgets/custom-text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class Info extends StatelessWidget {
-  const Info({Key key}) : super(key: key);
+class Intro1 extends StatelessWidget {
+  final PageController controller;
+  const Intro1({Key key,@required this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +33,7 @@ class Info extends StatelessWidget {
                     child: CustomText(
                       color: Colors.white,
                       text:
-                          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. ",
+                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. ",
                       size: ScreenUtil().setSp(30),
                       ls: 1.3,
                       align: TextAlign.center,
@@ -46,7 +45,7 @@ class Info extends StatelessWidget {
                     ),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        primary: Color(0xff616161),
+                        primary: Theme.of(context).accentColor,
                         padding: EdgeInsets.symmetric(
                           vertical: ScreenUtil().setHeight(20),
                           horizontal: ScreenUtil().setHeight(250),
@@ -57,10 +56,7 @@ class Info extends StatelessWidget {
                         ),
                       ),
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => Intro2()),
-                        );
+                        controller.animateToPage(1, duration: Duration(milliseconds: 400), curve: Curves.easeIn);
                       },
                       child: Text("Next"),
                     ),

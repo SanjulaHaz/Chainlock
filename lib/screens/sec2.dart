@@ -1,6 +1,7 @@
 import 'package:chainlock/screens/home.dart';
 import 'package:chainlock/screens/sec1.dart';
 import 'package:chainlock/widgets/custom-text.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -60,7 +61,7 @@ class Sec2 extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
+                    CupertinoPageRoute(
                       builder: (context) => Sec1(),
                     ),
                   );
