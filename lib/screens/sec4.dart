@@ -1,15 +1,11 @@
-import 'package:chainlock/screens/home.dart';
-import 'package:chainlock/screens/sec-main.dart';
 import 'package:chainlock/widgets/custom-text.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class Sec2 extends StatelessWidget {
+class Sec4 extends StatelessWidget {
   final PageController controller;
 
-  const Sec2({Key key, this.controller}) : super(key: key);
-
+  const Sec4({Key key, this.controller}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +17,8 @@ class Sec2 extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.only(bottom: ScreenUtil().setWidth(45)),
                 child: CustomText(
-                  text: "Address",
+                  align: TextAlign.center,
+                  text: "Dovid - Diffractive Optical Variable Image Device",
                   isBold: true,
                   size: ScreenUtil().setSp(35),
                 ),
@@ -29,17 +26,9 @@ class Sec2 extends StatelessWidget {
             ),
             CustomText(
               text:
-                  "Is this address visible on the card identical to the onw below?",
+                  "The address is protected against change with a DOVID in the form of a lock.\n\nWhen the card is turned horizontally by 90°, the color of the optical security feature (DOVID) changes from orange to green in the locks and in the background.\n\nWhen the card tilted, the filling of the background and the lock changes, which is shown once closed and once opened.",
               color: Color(0xff697378),
               size: ScreenUtil().setSp(25),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: ScreenUtil().setHeight(40)),
-              child: CustomText(
-                text: "1BgsasdhGkk23238asdkjj",
-                size: ScreenUtil().setSp(25),
-                isBold: true,
-              ),
             ),
             Padding(
               padding: EdgeInsets.only(
@@ -89,7 +78,7 @@ class Sec2 extends StatelessWidget {
                       color: Colors.white,
                     ),
                     onPressed: () {
-                      controller.animateToPage(2,
+                      controller.animateToPage(4,
                           curve: Curves.ease,
                           duration: Duration(milliseconds: 200));
                     },

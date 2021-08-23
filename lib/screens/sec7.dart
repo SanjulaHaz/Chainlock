@@ -1,15 +1,8 @@
-import 'package:chainlock/screens/home.dart';
-import 'package:chainlock/screens/sec-main.dart';
 import 'package:chainlock/widgets/custom-text.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class Sec2 extends StatelessWidget {
-  final PageController controller;
-
-  const Sec2({Key key, this.controller}) : super(key: key);
-
+class Sec7 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +14,7 @@ class Sec2 extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.only(bottom: ScreenUtil().setWidth(45)),
                 child: CustomText(
-                  text: "Address",
+                  text: "Security seal surface",
                   isBold: true,
                   size: ScreenUtil().setSp(35),
                 ),
@@ -29,17 +22,9 @@ class Sec2 extends StatelessWidget {
             ),
             CustomText(
               text:
-                  "Is this address visible on the card identical to the onw below?",
+                  "The scratch field of the security seal should only be scratched off if the card is to be emptied. Until then, a completely closed, shimmering metallic surface protects the private key against reading. The private key cannot be seen.\n\nIf the text \"seal broken\" appears in the orange area of the seal, an attempt was made to break the seal - do not use such a card anymore!\n\nThe private key is covered with the security seal?",
               color: Color(0xff697378),
               size: ScreenUtil().setSp(25),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: ScreenUtil().setHeight(40)),
-              child: CustomText(
-                text: "1BgsasdhGkk23238asdkjj",
-                size: ScreenUtil().setSp(25),
-                isBold: true,
-              ),
             ),
             Padding(
               padding: EdgeInsets.only(
@@ -65,11 +50,7 @@ class Sec2 extends StatelessWidget {
                         text: "NO",
                         size: ScreenUtil().setSp(30),
                       ),
-                      onPressed: () {
-                        controller.animateToPage(2,
-                            curve: Curves.ease,
-                            duration: Duration(milliseconds: 200));
-                      },
+                      onPressed: () {},
                     ),
                   ),
                   ElevatedButton(
@@ -88,11 +69,7 @@ class Sec2 extends StatelessWidget {
                       size: ScreenUtil().setSp(30),
                       color: Colors.white,
                     ),
-                    onPressed: () {
-                      controller.animateToPage(2,
-                          curve: Curves.ease,
-                          duration: Duration(milliseconds: 200));
-                    },
+                    onPressed: () {},
                   ),
                 ],
               ),

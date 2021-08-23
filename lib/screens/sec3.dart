@@ -1,14 +1,11 @@
-import 'package:chainlock/screens/home.dart';
-import 'package:chainlock/screens/sec-main.dart';
 import 'package:chainlock/widgets/custom-text.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class Sec2 extends StatelessWidget {
+class Sec3 extends StatelessWidget {
   final PageController controller;
 
-  const Sec2({Key key, this.controller}) : super(key: key);
+  const Sec3({Key key, this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +18,7 @@ class Sec2 extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.only(bottom: ScreenUtil().setWidth(45)),
                 child: CustomText(
-                  text: "Address",
+                  text: "Serial Number",
                   isBold: true,
                   size: ScreenUtil().setSp(35),
                 ),
@@ -29,7 +26,7 @@ class Sec2 extends StatelessWidget {
             ),
             CustomText(
               text:
-                  "Is this address visible on the card identical to the onw below?",
+                  "Do you see the number below on both sides of the card?\n\nIs this number on the side with the security seal also tactile(number can be felt)?",
               color: Color(0xff697378),
               size: ScreenUtil().setSp(25),
             ),
@@ -89,7 +86,7 @@ class Sec2 extends StatelessWidget {
                       color: Colors.white,
                     ),
                     onPressed: () {
-                      controller.animateToPage(2,
+                      controller.animateToPage(3,
                           curve: Curves.ease,
                           duration: Duration(milliseconds: 200));
                     },

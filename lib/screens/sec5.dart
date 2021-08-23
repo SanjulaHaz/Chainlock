@@ -1,15 +1,11 @@
-import 'package:chainlock/screens/home.dart';
-import 'package:chainlock/screens/sec-main.dart';
 import 'package:chainlock/widgets/custom-text.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class Sec2 extends StatelessWidget {
+class Sec5 extends StatelessWidget {
   final PageController controller;
 
-  const Sec2({Key key, this.controller}) : super(key: key);
-
+  const Sec5({Key key, this.controller}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +17,7 @@ class Sec2 extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.only(bottom: ScreenUtil().setWidth(45)),
                 child: CustomText(
-                  text: "Address",
+                  text: "Security seal DOVID",
                   isBold: true,
                   size: ScreenUtil().setSp(35),
                 ),
@@ -29,17 +25,9 @@ class Sec2 extends StatelessWidget {
             ),
             CustomText(
               text:
-                  "Is this address visible on the card identical to the onw below?",
+                  "A DOVID is also attached to the security seal and protects the private key against unintentional reading.\n\nThe locks are closed or open depending on the viewing angle and change their color from orange to green. Depending on the viewing angle, the texts \"chainlock\" and \"private key\" can be read in the background.\n\nDoes the card's security seal match this description?",
               color: Color(0xff697378),
               size: ScreenUtil().setSp(25),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: ScreenUtil().setHeight(40)),
-              child: CustomText(
-                text: "1BgsasdhGkk23238asdkjj",
-                size: ScreenUtil().setSp(25),
-                isBold: true,
-              ),
             ),
             Padding(
               padding: EdgeInsets.only(
@@ -89,7 +77,7 @@ class Sec2 extends StatelessWidget {
                       color: Colors.white,
                     ),
                     onPressed: () {
-                      controller.animateToPage(2,
+                      controller.animateToPage(5,
                           curve: Curves.ease,
                           duration: Duration(milliseconds: 200));
                     },

@@ -1,3 +1,4 @@
+import 'package:chainlock/screens/license.dart';
 import 'package:chainlock/screens/sec-main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,13 +17,11 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: Size(720, 1560),
       builder: () => MaterialApp(
-        theme:
-            ThemeData(
-                primaryColor: Color(0xffeb690b),
-                accentColor: Color(0xff616161),
-                fontFamily: "Verdana"
-            ),
-        home: SecMain(),
+        theme: ThemeData(
+            primaryColor: Color(0xffeb690b),
+            accentColor: Color(0xff616161),
+            fontFamily: "Verdana"),
+        home: License(),
       ),
     );
   }

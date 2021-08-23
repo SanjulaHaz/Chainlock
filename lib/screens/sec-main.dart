@@ -1,4 +1,9 @@
 import 'package:chainlock/screens/sec2.dart';
+import 'package:chainlock/screens/sec3.dart';
+import 'package:chainlock/screens/sec4.dart';
+import 'package:chainlock/screens/sec5.dart';
+import 'package:chainlock/screens/sec6.dart';
+import 'package:chainlock/screens/sec7.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,13 +25,14 @@ class _SecMainState extends State<SecMain> {
     // TODO: implement initState
     super.initState();
     _controller.addListener(() {
-      if(mounted){
+      if (mounted) {
         setState(() {
           currentPage = _controller.page.toInt();
         });
       }
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,20 +40,41 @@ class _SecMainState extends State<SecMain> {
         title: Text("Check a card"),
       ),
       body: Padding(
-        padding: EdgeInsets.all(ScreenUtil().setWidth(25)),
+        padding: EdgeInsets.all(ScreenUtil().setWidth(15)),
         child: Column(
           children: [
             IconStepper(
               activeStep: currentPage,
               enableStepTapping: false,
               icons: [
-                Icon(currentPage<=0?Icons.album_outlined:Icons.check,color: currentPage==0?Colors.white:Colors.black,),
-                Icon(currentPage<=1?Icons.album_outlined:Icons.check,color: currentPage==1?Colors.white:Colors.black,),
-                Icon(currentPage<=2?Icons.album_outlined:Icons.check,color: currentPage==2?Colors.white:Colors.black,),
-                Icon(currentPage<=3?Icons.album_outlined:Icons.check,color: currentPage==3?Colors.white:Colors.black,),
-                Icon(currentPage<=4?Icons.album_outlined:Icons.check,color: currentPage==4?Colors.white:Colors.black,),
-                Icon(currentPage<=5?Icons.album_outlined:Icons.check,color: currentPage==5?Colors.white:Colors.black,),
-                Icon(currentPage<=6?Icons.album_outlined:Icons.check,color: currentPage==6?Colors.white:Colors.black,),
+                Icon(
+                  currentPage <= 0 ? Icons.album_outlined : Icons.check,
+                  color: currentPage == 0 ? Colors.white : Colors.black,
+                ),
+                Icon(
+                  currentPage <= 1 ? Icons.album_outlined : Icons.check,
+                  color: currentPage == 1 ? Colors.white : Colors.black,
+                ),
+                Icon(
+                  currentPage <= 2 ? Icons.album_outlined : Icons.check,
+                  color: currentPage == 2 ? Colors.white : Colors.black,
+                ),
+                Icon(
+                  currentPage <= 3 ? Icons.album_outlined : Icons.check,
+                  color: currentPage == 3 ? Colors.white : Colors.black,
+                ),
+                Icon(
+                  currentPage <= 4 ? Icons.album_outlined : Icons.check,
+                  color: currentPage == 4 ? Colors.white : Colors.black,
+                ),
+                Icon(
+                  currentPage <= 5 ? Icons.album_outlined : Icons.check,
+                  color: currentPage == 5 ? Colors.white : Colors.black,
+                ),
+                Icon(
+                  currentPage <= 6 ? Icons.album_outlined : Icons.check,
+                  color: currentPage == 6 ? Colors.white : Colors.black,
+                ),
               ],
               enableNextPreviousButtons: false,
               stepRadius: 15,
@@ -60,19 +87,30 @@ class _SecMainState extends State<SecMain> {
               lineLength: 25,
               stepReachedAnimationDuration: Duration(milliseconds: 500),
             ),
-
             Expanded(
               child: PageView(
                 controller: _controller,
                 physics: NeverScrollableScrollPhysics(),
                 children: [
-                  Sec1(controller: _controller,),
-                  Sec2(controller: _controller,),
-                  Sec1(),
-                  Sec1(),
-                  Sec1(),
-                  Sec1(),
-                  Sec1(),
+                  Sec1(
+                    controller: _controller,
+                  ),
+                  Sec2(
+                    controller: _controller,
+                  ),
+                  Sec3(
+                    controller: _controller,
+                  ),
+                  Sec4(
+                    controller: _controller,
+                  ),
+                  Sec5(
+                    controller: _controller,
+                  ),
+                  Sec6(
+                    controller: _controller,
+                  ),
+                  Sec7(),
                 ],
               ),
             ),

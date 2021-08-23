@@ -60,10 +60,21 @@ class Home extends StatelessWidget {
         body: Column(
           children: [
             Expanded(
-              child: Container(
-                width: 100,
-                height: 100,
-                color: Colors.blue,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    width: ScreenUtil().setWidth(500),
+                    child: Image.asset("assets/no_cards.png"),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(ScreenUtil().setHeight(25)),
+                    child: CustomText(
+                      text: "No Cards Added",
+                      color: Color(0xff697378),
+                    ),
+                  )
+                ],
               ),
             ),
             Padding(

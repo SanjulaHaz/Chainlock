@@ -1,15 +1,11 @@
-import 'package:chainlock/screens/home.dart';
-import 'package:chainlock/screens/sec-main.dart';
 import 'package:chainlock/widgets/custom-text.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class Sec2 extends StatelessWidget {
+class Sec6 extends StatelessWidget {
   final PageController controller;
 
-  const Sec2({Key key, this.controller}) : super(key: key);
-
+  const Sec6({Key key, this.controller}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +17,7 @@ class Sec2 extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.only(bottom: ScreenUtil().setWidth(45)),
                 child: CustomText(
-                  text: "Address",
+                  text: "Security punchings",
                   isBold: true,
                   size: ScreenUtil().setSp(35),
                 ),
@@ -29,17 +25,9 @@ class Sec2 extends StatelessWidget {
             ),
             CustomText(
               text:
-                  "Is this address visible on the card identical to the onw below?",
+                  "There are security punchings on the edge of the security seal. These should be recognizable as small v-shaped cuts. If someone tried to remove the seal, those cuts indicate this - it is not possible to put the seal back on the card as shown in the pictures.\n\nAre the security punchings intact?",
               color: Color(0xff697378),
               size: ScreenUtil().setSp(25),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: ScreenUtil().setHeight(40)),
-              child: CustomText(
-                text: "1BgsasdhGkk23238asdkjj",
-                size: ScreenUtil().setSp(25),
-                isBold: true,
-              ),
             ),
             Padding(
               padding: EdgeInsets.only(
@@ -89,7 +77,7 @@ class Sec2 extends StatelessWidget {
                       color: Colors.white,
                     ),
                     onPressed: () {
-                      controller.animateToPage(2,
+                      controller.animateToPage(6,
                           curve: Curves.ease,
                           duration: Duration(milliseconds: 200));
                     },

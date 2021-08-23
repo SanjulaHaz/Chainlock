@@ -14,13 +14,14 @@ class Sec1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.all(ScreenUtil().setWidth(25)),
+        padding: EdgeInsets.all(ScreenUtil().setWidth(10)),
         child: Column(
           children: [
             Center(
               child: Padding(
-                padding:
-                EdgeInsets.symmetric(vertical: ScreenUtil().setWidth(45)),
+                padding: EdgeInsets.only(
+                  bottom: ScreenUtil().setWidth(45),
+                ),
                 child: CustomText(
                   text: "Security Features check",
                   isBold: true,
@@ -30,7 +31,7 @@ class Sec1 extends StatelessWidget {
             ),
             CustomText(
               text:
-              "The Cryptographic examination has been completed. The app now walks you through the check of the physical security features.",
+                  "The Cryptographic examination has been completed. The app now walks you through the check of the physical security features.",
               color: Color(0xff697378),
               size: ScreenUtil().setSp(25),
             ),
@@ -55,7 +56,9 @@ class Sec1 extends StatelessWidget {
                   size: ScreenUtil().setSp(30),
                 ),
                 onPressed: () {
-                  controller.animateToPage(1,curve: Curves.ease,duration: Duration(milliseconds: 200));
+                  controller.animateToPage(1,
+                      curve: Curves.ease,
+                      duration: Duration(milliseconds: 200));
                 },
               ),
             ),
