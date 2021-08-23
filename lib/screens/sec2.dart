@@ -7,8 +7,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Sec2 extends StatelessWidget {
   final PageController controller;
+  final String address;
 
-  const Sec2({Key key, this.controller}) : super(key: key);
+  const Sec2({Key key, this.controller, this.address}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,14 +30,14 @@ class Sec2 extends StatelessWidget {
             ),
             CustomText(
               text:
-                  "Is this address visible on the card identical to the onw below?",
+                  "Is this address visible on the card identical to the one below?",
               color: Color(0xff697378),
               size: ScreenUtil().setSp(25),
             ),
             Padding(
               padding: EdgeInsets.only(top: ScreenUtil().setHeight(40)),
               child: CustomText(
-                text: "1BgsasdhGkk23238asdkjj",
+                text: address,
                 size: ScreenUtil().setSp(25),
                 isBold: true,
               ),

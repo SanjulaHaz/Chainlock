@@ -23,6 +23,7 @@ class _QRScreenState extends State<QRScreen> {
   bool backSideCheck = false;
   String clc = "";
   String address = "";
+  List clcElements = [];
 
   void _onQRViewCreated(QRViewController controller) {
     this.controller = controller;
@@ -37,6 +38,7 @@ class _QRScreenState extends State<QRScreen> {
   validateQRCode(String code) async {
     ///validate back side
     var uri = Uri.dataFromString(code);
+    print("scanned " + code);
 
     String queryParams;
     try {
@@ -88,13 +90,22 @@ class _QRScreenState extends State<QRScreen> {
       if (response.statusCode == 200 || response.statusCode == 201) {
         var body = jsonDecode(response.body);
         print(body);
+        print("SHA512 is: " + clcSha512);
 
         if (body['valid']) {
           print('online validation successful');
+          debugPrint('certificate is :' + body["certificate"]);
           _dialog.hide();
+
+          clcElements = clc.split(';');
+
           Navigator.push(
             context,
-            CupertinoPageRoute(builder: (context) => SecMain()),
+            CupertinoPageRoute(
+                builder: (context) => SecMain(
+                      address: address,
+                      cardNo: clcElements[2],
+                    )),
           );
         } else {
           _dialog.hide();
@@ -106,7 +117,7 @@ class _QRScreenState extends State<QRScreen> {
       }
     } catch (e) {
       _dialog.hide();
-      print("Error");
+      print("Error " + e.toString());
     }
   }
 

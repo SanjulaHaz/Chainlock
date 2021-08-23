@@ -4,8 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Sec3 extends StatelessWidget {
   final PageController controller;
+  final String cardNo;
 
-  const Sec3({Key key, this.controller}) : super(key: key);
+  const Sec3({Key key, this.controller, this.cardNo}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,7 @@ class Sec3 extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(top: ScreenUtil().setHeight(40)),
               child: CustomText(
-                text: "1BgsasdhGkk23238asdkjj",
+                text: cardNo,
                 size: ScreenUtil().setSp(25),
                 isBold: true,
               ),

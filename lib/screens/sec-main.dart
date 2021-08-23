@@ -12,6 +12,10 @@ import 'package:im_stepper/stepper.dart';
 import 'sec1.dart';
 
 class SecMain extends StatefulWidget {
+  final String address;
+  final String cardNo;
+
+  const SecMain({Key key, this.address, this.cardNo}) : super(key: key);
   @override
   _SecMainState createState() => _SecMainState();
 }
@@ -97,9 +101,11 @@ class _SecMainState extends State<SecMain> {
                   ),
                   Sec2(
                     controller: _controller,
+                    address: widget.address,
                   ),
                   Sec3(
                     controller: _controller,
+                    cardNo: widget.cardNo,
                   ),
                   Sec4(
                     controller: _controller,
