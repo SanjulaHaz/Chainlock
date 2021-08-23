@@ -6,7 +6,7 @@ import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:simple_fontellico_progress_dialog/simple_fontico_loading.dart';
 import '../widgets/custom-text.dart';
 import 'package:http/http.dart' as http;
-import 'sec1.dart';
+import 'sec-main.dart';
 
 class QRScreen extends StatefulWidget {
   @override
@@ -94,7 +94,7 @@ class _QRScreenState extends State<QRScreen> {
           _dialog.hide();
           Navigator.push(
             context,
-            CupertinoPageRoute(builder: (context) => Sec1()),
+            CupertinoPageRoute(builder: (context) => SecMain()),
           );
         }
         else{

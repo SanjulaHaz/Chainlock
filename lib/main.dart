@@ -1,8 +1,8 @@
-import 'package:chainlock/screens/license.dart';
-import 'package:chainlock/screens/sec2.dart';
-import 'package:chainlock/screens/sec1.dart';
+import 'package:chainlock/screens/sec-main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'screens/sec-main.dart';
 
 void main() {
   runApp(MyApp());
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
                 accentColor: Color(0xff616161),
                 fontFamily: "Verdana"
             ),
-        home: License(),
+        home: SecMain(),
       ),
     );
   }

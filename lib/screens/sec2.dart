@@ -1,17 +1,18 @@
 import 'package:chainlock/screens/home.dart';
-import 'package:chainlock/screens/sec1.dart';
+import 'package:chainlock/screens/sec-main.dart';
 import 'package:chainlock/widgets/custom-text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Sec2 extends StatelessWidget {
+  final PageController controller;
+
+  const Sec2({Key key, this.controller}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Check a card"),
-      ),
       body: Padding(
         padding: EdgeInsets.all(ScreenUtil().setWidth(25)),
         child: Column(
@@ -59,12 +60,7 @@ class Sec2 extends StatelessWidget {
                   size: ScreenUtil().setSp(30),
                 ),
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    CupertinoPageRoute(
-                      builder: (context) => Sec1(),
-                    ),
-                  );
+                  controller.animateToPage(2,curve: Curves.ease,duration: Duration(milliseconds: 200));
                 },
               ),
             )

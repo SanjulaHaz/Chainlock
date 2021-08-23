@@ -3,14 +3,16 @@ import 'package:chainlock/widgets/custom-text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:im_stepper/stepper.dart';
 
 class Sec1 extends StatelessWidget {
+  final PageController controller;
+
+  const Sec1({Key key, this.controller}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Check a card"),
-      ),
       body: Padding(
         padding: EdgeInsets.all(ScreenUtil().setWidth(25)),
         child: Column(
@@ -18,7 +20,7 @@ class Sec1 extends StatelessWidget {
             Center(
               child: Padding(
                 padding:
-                    EdgeInsets.symmetric(vertical: ScreenUtil().setWidth(45)),
+                EdgeInsets.symmetric(vertical: ScreenUtil().setWidth(45)),
                 child: CustomText(
                   text: "Security Features check",
                   isBold: true,
@@ -28,7 +30,7 @@ class Sec1 extends StatelessWidget {
             ),
             CustomText(
               text:
-                  "The Cryptographic examination has been completed. The app now walks you through the check of the physical security features.",
+              "The Cryptographic examination has been completed. The app now walks you through the check of the physical security features.",
               color: Color(0xff697378),
               size: ScreenUtil().setSp(25),
             ),
@@ -53,15 +55,10 @@ class Sec1 extends StatelessWidget {
                   size: ScreenUtil().setSp(30),
                 ),
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    CupertinoPageRoute(
-                      builder: (context) => Sec2(),
-                    ),
-                  );
+                  controller.animateToPage(1,curve: Curves.ease,duration: Duration(milliseconds: 200));
                 },
               ),
-            )
+            ),
           ],
         ),
       ),
