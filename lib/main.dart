@@ -1,3 +1,4 @@
+import 'package:chainlock/screens/congratulation.dart';
 import 'package:chainlock/screens/license.dart';
 import 'package:chainlock/screens/sec-main.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
             primaryColor: Color(0xffeb690b),
             accentColor: Color(0xff616161),
             fontFamily: "Verdana"),
-        home: License(),
+        home: Congratulations(),
       ),
     );
   }

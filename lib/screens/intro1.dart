@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Intro1 extends StatelessWidget {
   final PageController controller;
-  const Intro1({Key key,@required this.controller}) : super(key: key);
+  const Intro1({Key key, @required this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,9 +13,12 @@ class Intro1 extends StatelessWidget {
         children: [
           Expanded(
             flex: 3,
-            child: Image.asset(
-              'assets/newintro1.png',
-              fit: BoxFit.cover,
+            child: SizedBox(
+              width: double.infinity,
+              child: Image.asset(
+                'assets/newintro1.png',
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           Expanded(
@@ -33,7 +36,7 @@ class Intro1 extends StatelessWidget {
                     child: CustomText(
                       color: Colors.white,
                       text:
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. ",
+                          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. ",
                       size: ScreenUtil().setSp(30),
                       ls: 1.3,
                       align: TextAlign.center,
@@ -56,7 +59,9 @@ class Intro1 extends StatelessWidget {
                         ),
                       ),
                       onPressed: () {
-                        controller.animateToPage(1, duration: Duration(milliseconds: 400), curve: Curves.easeIn);
+                        controller.animateToPage(1,
+                            duration: Duration(milliseconds: 400),
+                            curve: Curves.easeIn);
                       },
                       child: Text("Next"),
                     ),
