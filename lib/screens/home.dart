@@ -2,6 +2,7 @@ import 'package:chainlock/screens/qr.dart';
 import 'package:chainlock/widgets/custom-text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Home extends StatelessWidget {
@@ -61,22 +62,97 @@ class Home extends StatelessWidget {
           children: [
             Expanded(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(
-                    width: ScreenUtil().setWidth(500),
-                    child: Image.asset("assets/no_cards.png"),
-                  ),
                   Padding(
-                    padding: EdgeInsets.all(ScreenUtil().setHeight(25)),
-                    child: CustomText(
-                      text: "No Cards Added",
-                      color: Color(0xff697378),
+                    padding: EdgeInsets.all(ScreenUtil().setWidth(20)),
+                    child: Card(
+                      elevation: 5,
+                      child: Padding(
+                        padding: EdgeInsets.all(ScreenUtil().setWidth(30)),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Row(
+                              children: [
+                                SizedBox(
+                                  child: Image.network(
+                                      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/BTC_Logo.svg/183px-BTC_Logo.svg.png"),
+                                  width: ScreenUtil().setWidth(80),
+                                ),
+                                SizedBox(
+                                  width: ScreenUtil().setWidth(30),
+                                ),
+                                CustomText(
+                                  text: "BTC",
+                                  isBold: true,
+                                  size: ScreenUtil().setSp(35),
+                                ),
+                                Expanded(child: SizedBox()),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    CustomText(
+                                      text: "102457845769845",
+                                      size: ScreenUtil().setSp(22),
+                                    ),
+                                    SizedBox(
+                                      height: ScreenUtil().setHeight(8),
+                                    ),
+                                    RichText(
+                                      text: TextSpan(
+                                          text: "0 ",
+                                          style: TextStyle(
+                                            fontSize: ScreenUtil().setSp(45),
+                                            color: Colors.black,
+                                          ),
+                                          children: [
+                                            TextSpan(
+                                              text: "sat",
+                                              style: TextStyle(
+                                                fontSize:
+                                                    ScreenUtil().setSp(40),
+                                              ),
+                                            ),
+                                          ]),
+                                    ),
+                                    SizedBox(
+                                      height: ScreenUtil().setHeight(8),
+                                    ),
+                                    CustomText(
+                                      text: "~0.00 €",
+                                      color: Color(0xff697378),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
+            // Expanded(
+            //   child: Column(
+            //     mainAxisAlignment: MainAxisAlignment.center,
+            //     children: [
+            //       SizedBox(
+            //         width: ScreenUtil().setWidth(500),
+            //         child: Image.asset("assets/no_cards.png"),
+            //       ),
+            //       Padding(
+            //         padding: EdgeInsets.all(ScreenUtil().setHeight(25)),
+            //         child: CustomText(
+            //           text: "No Cards Added",
+            //           color: Color(0xff697378),
+            //         ),
+            //       )
+            //     ],
+            //   ),
+            // ),
             Padding(
               padding: EdgeInsets.all(ScreenUtil().setWidth(60)),
               child: Row(
