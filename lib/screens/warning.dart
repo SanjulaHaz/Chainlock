@@ -2,7 +2,7 @@ import 'package:chainlock/widgets/custom-text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class Congratulations extends StatelessWidget {
+class Warning extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,13 +33,13 @@ class Congratulations extends StatelessWidget {
                     SizedBox(
                       width: ScreenUtil().setWidth(200),
                       child: Image.network(
-                          "https://image.flaticon.com/icons/png/512/5110/5110939.png"),
+                          "https://image.flaticon.com/icons/png/512/1672/1672451.png"),
                     ),
                     SizedBox(
                       height: ScreenUtil().setHeight(80),
                     ),
                     CustomText(
-                      text: "Congratulations!",
+                      text: "Warning!",
                       size: ScreenUtil().setSp(45),
                       isBold: true,
                     ),
@@ -50,39 +50,11 @@ class Congratulations extends StatelessWidget {
                       width: ScreenUtil().setWidth(540),
                       child: CustomText(
                         text:
-                            "The check of your chainlock card has been completed",
+                            "Please do not use this card and contact the point of sale where you purchased the card",
                         align: TextAlign.center,
                         color: Color(0xff4d5153),
+                        ls: 1.4,
                       ),
-                    ),
-                    SizedBox(
-                      height: ScreenUtil().setHeight(50),
-                    ),
-                    CustomText(
-                      text: "Chainlock card number",
-                      size: ScreenUtil().setSp(32),
-                      isBold: true,
-                    ),
-                    SizedBox(
-                      height: ScreenUtil().setHeight(10),
-                    ),
-                    CustomText(
-                      text: "2000154547895446698745",
-                      color: Color(0xff4d5153),
-                    ),
-                    SizedBox(
-                      height: ScreenUtil().setHeight(50),
-                    ),
-                    CustomText(
-                      size: ScreenUtil().setSp(32),
-                      text: "Public Address",
-                      isBold: true,
-                    ),
-                    SizedBox(
-                      height: ScreenUtil().setHeight(10),
-                    ),
-                    CustomText(
-                      text: "45sBfjgV5454trG545788Hbsd45",
                     ),
                   ],
                 ),
@@ -104,7 +76,7 @@ class Congratulations extends StatelessWidget {
                 ),
               ),
               onPressed: () {},
-              child: Text("Save Card"),
+              child: Text("Back to Home"),
             ),
           ],
         ),
