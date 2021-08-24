@@ -105,6 +105,8 @@ class _QRScreenState extends State<QRScreen> {
                 builder: (context) => SecMain(
                       address: address,
                       cardNo: clcElements[2],
+                      crypto: body['info']['currency'],
+                      clcHash: clcSha512,
                     )),
           );
         } else {

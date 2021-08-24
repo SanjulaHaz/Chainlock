@@ -14,8 +14,10 @@ import 'sec1.dart';
 class SecMain extends StatefulWidget {
   final String address;
   final String cardNo;
+  final String crypto;
+  final String clcHash;
 
-  const SecMain({Key key, this.address, this.cardNo}) : super(key: key);
+  const SecMain({Key key, this.address, this.cardNo, this.crypto, this.clcHash}) : super(key: key);
   @override
   _SecMainState createState() => _SecMainState();
 }
@@ -23,11 +25,16 @@ class SecMain extends StatefulWidget {
 class _SecMainState extends State<SecMain> {
   PageController _controller = PageController();
   int currentPage = 0;
+  Map cardDetails = {};
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    cardDetails['address'] = widget.address;
+    cardDetails['crypto'] = widget.crypto;
+    cardDetails['cardNo'] = widget.cardNo;
+    cardDetails['clcHash'] = widget.clcHash;
     _controller.addListener(() {
       if (mounted) {
         setState(() {
@@ -116,7 +123,7 @@ class _SecMainState extends State<SecMain> {
                   Sec6(
                     controller: _controller,
                   ),
-                  Sec7(),
+                  Sec7(cardDetails: cardDetails,),
                 ],
               ),
             ),

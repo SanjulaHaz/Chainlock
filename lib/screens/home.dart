@@ -1,13 +1,77 @@
+import 'dart:convert';
+
 import 'package:chainlock/screens/qr.dart';
 import 'package:chainlock/widgets/custom-text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:http/http.dart' as http;
 
-class Home extends StatelessWidget {
-  GlobalKey<ScaffoldState> scaffoldkey = new GlobalKey();
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
 
+class _HomeState extends State<Home> {
+  GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey();
+  List fetchedCards;
+
+  getCards() async {
+    final storage = FlutterSecureStorage();
+    String cards = await storage.read(key: 'cards');
+    if(cards!=null){
+      setState(() {
+        fetchedCards = cards.split(';');
+      });
+    }
+    else{
+      setState(() {
+        fetchedCards = [];
+      });
+    }
+  }
+
+  getDetails(Map cardDetails) async {
+      try{
+        String url = "https://api.chainlock.com/api/v1/balances";
+        var response = await http.post(
+            Uri.parse(url),
+            headers: {
+              "X-API-KEY": cardDetails['clcHash'],
+              "Content-Type": "application/json"
+            },
+            body: jsonEncode(
+                {
+                  "address": cardDetails['address'],
+                  "cryptoCurrency": cardDetails['crypto'],
+                  "fiatCurrency": "EUR"
+                }
+              )
+        );
+        print(response.statusCode);
+        if(response.statusCode==200){
+          var body = jsonDecode(response.body);
+          print(body);
+          return body;
+        }
+        else{
+          return {'status': "ERROR"};
+        }
+      }
+      catch(e){
+        print(e);
+        return {'status': "ERROR"};
+      }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getCards();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,17 +83,17 @@ class Home extends StatelessWidget {
             color: Colors.white,
           ),
           onPressed: () {
-            if (scaffoldkey.currentState.isDrawerOpen == false) {
-              scaffoldkey.currentState.openDrawer();
+            if (scaffoldKey.currentState.isDrawerOpen == false) {
+              scaffoldKey.currentState.openDrawer();
             } else {
-              scaffoldkey.currentState.openEndDrawer();
+              scaffoldKey.currentState.openEndDrawer();
             }
             ;
           },
         ),
       ),
       body: Scaffold(
-        key: scaffoldkey,
+        key: scaffoldKey,
         drawer: Drawer(
           child: ListView(
             children: [
@@ -60,99 +124,123 @@ class Home extends StatelessWidget {
         ),
         body: Column(
           children: [
+            if(fetchedCards!=null&&fetchedCards.length>0)
+            Expanded(
+              child: fetchedCards!=null?ListView.builder(
+                itemCount: fetchedCards.length,
+                physics: BouncingScrollPhysics(),
+                itemBuilder: (context, i){
+                  Map cardDetails = jsonDecode(fetchedCards[i]);
+
+                  return FutureBuilder(
+                    future: getDetails(cardDetails),
+                    builder: (context, snapshot){
+                      if(snapshot.hasData){
+                        String logo = snapshot.data['logo'];
+                        double cryptoBalance = double.parse(snapshot.data['cryptoBalance'].toString());
+                        double fiatBalance = double.parse(snapshot.data['fiatBalance'].toString());
+
+                        return Padding(
+                          padding: EdgeInsets.fromLTRB(ScreenUtil().setWidth(20),ScreenUtil().setWidth(20),ScreenUtil().setWidth(20),0),
+                          child: Card(
+                            elevation: 5,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.all(ScreenUtil().setWidth(30)),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Row(
+                                    children: [
+                                      SizedBox(
+                                        child: Image.network(logo),
+                                        width: ScreenUtil().setWidth(80),
+                                      ),
+                                      SizedBox(
+                                        width: ScreenUtil().setWidth(30),
+                                      ),
+                                      CustomText(
+                                        text: cardDetails['crypto'],
+                                        isBold: true,
+                                        size: ScreenUtil().setSp(35),
+                                      ),
+                                      Expanded(child: SizedBox()),
+                                      Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.end,
+                                        children: [
+                                          CustomText(
+                                            text: cardDetails['cardNo'],
+                                            size: ScreenUtil().setSp(22),
+                                          ),
+                                          SizedBox(
+                                            height: ScreenUtil().setHeight(8),
+                                          ),
+                                          RichText(
+                                            text: TextSpan(
+                                                text: cryptoBalance.toString()+" ",
+                                                style: TextStyle(
+                                                  fontSize: ScreenUtil().setSp(45),
+                                                  color: Colors.black,
+                                                ),
+                                                children: [
+                                                  TextSpan(
+                                                    text: "sat",
+                                                    style: TextStyle(
+                                                      fontSize:
+                                                      ScreenUtil().setSp(40),
+                                                    ),
+                                                  ),
+                                                ]),
+                                          ),
+                                          SizedBox(
+                                            height: ScreenUtil().setHeight(8),
+                                          ),
+                                          CustomText(
+                                            text: "~$fiatBalance €",
+                                            color: Color(0xff697378),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      }
+                      else{
+                        return Center(child: LinearProgressIndicator(),);
+                      }
+                    },
+                  );
+                },
+              ):Center(child: CircularProgressIndicator(),),
+            ),
+
+            if(fetchedCards!=null&&fetchedCards.length==0)
             Expanded(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding: EdgeInsets.all(ScreenUtil().setWidth(20)),
-                    child: Card(
-                      elevation: 5,
-                      child: Padding(
-                        padding: EdgeInsets.all(ScreenUtil().setWidth(30)),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Row(
-                              children: [
-                                SizedBox(
-                                  child: Image.network(
-                                      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/BTC_Logo.svg/183px-BTC_Logo.svg.png"),
-                                  width: ScreenUtil().setWidth(80),
-                                ),
-                                SizedBox(
-                                  width: ScreenUtil().setWidth(30),
-                                ),
-                                CustomText(
-                                  text: "BTC",
-                                  isBold: true,
-                                  size: ScreenUtil().setSp(35),
-                                ),
-                                Expanded(child: SizedBox()),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    CustomText(
-                                      text: "102457845769845",
-                                      size: ScreenUtil().setSp(22),
-                                    ),
-                                    SizedBox(
-                                      height: ScreenUtil().setHeight(8),
-                                    ),
-                                    RichText(
-                                      text: TextSpan(
-                                          text: "0 ",
-                                          style: TextStyle(
-                                            fontSize: ScreenUtil().setSp(45),
-                                            color: Colors.black,
-                                          ),
-                                          children: [
-                                            TextSpan(
-                                              text: "sat",
-                                              style: TextStyle(
-                                                fontSize:
-                                                    ScreenUtil().setSp(40),
-                                              ),
-                                            ),
-                                          ]),
-                                    ),
-                                    SizedBox(
-                                      height: ScreenUtil().setHeight(8),
-                                    ),
-                                    CustomText(
-                                      text: "~0.00 €",
-                                      color: Color(0xff697378),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                  SizedBox(
+                    width: ScreenUtil().setWidth(500),
+                    child: Image.asset("assets/no_cards.png"),
                   ),
+                  Padding(
+                    padding: EdgeInsets.all(ScreenUtil().setHeight(25)),
+                    child: CustomText(
+                      text: "No Cards Added",
+                      color: Color(0xff697378),
+                    ),
+                  )
                 ],
               ),
             ),
-            // Expanded(
-            //   child: Column(
-            //     mainAxisAlignment: MainAxisAlignment.center,
-            //     children: [
-            //       SizedBox(
-            //         width: ScreenUtil().setWidth(500),
-            //         child: Image.asset("assets/no_cards.png"),
-            //       ),
-            //       Padding(
-            //         padding: EdgeInsets.all(ScreenUtil().setHeight(25)),
-            //         child: CustomText(
-            //           text: "No Cards Added",
-            //           color: Color(0xff697378),
-            //         ),
-            //       )
-            //     ],
-            //   ),
-            // ),
+
             Padding(
               padding: EdgeInsets.all(ScreenUtil().setWidth(60)),
               child: Row(

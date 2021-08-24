@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
             primaryColor: Color(0xffeb690b),
             accentColor: Color(0xff616161),
             fontFamily: "Verdana"),
-        home: Congratulations(),
+        home: License(),
       ),
     );
   }
