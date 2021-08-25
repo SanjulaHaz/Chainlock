@@ -1,5 +1,6 @@
 import 'package:chainlock/screens/home.dart';
 import 'package:chainlock/screens/sec-main.dart';
+import 'package:chainlock/screens/warning.dart';
 import 'package:chainlock/widgets/custom-text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -67,9 +68,11 @@ class Sec2 extends StatelessWidget {
                         size: ScreenUtil().setSp(30),
                       ),
                       onPressed: () {
-                        controller.animateToPage(2,
-                            curve: Curves.ease,
-                            duration: Duration(milliseconds: 200));
+                        Navigator.push(
+                          context,
+                          CupertinoPageRoute(
+                              builder: (context) => Warning()),
+                        );
                       },
                     ),
                   ),

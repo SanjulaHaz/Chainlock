@@ -1,6 +1,8 @@
 import 'dart:convert';
 
+import 'package:chainlock/screens/congratulation.dart';
 import 'package:chainlock/screens/home.dart';
+import 'package:chainlock/screens/warning.dart';
 import 'package:chainlock/widgets/custom-text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -58,7 +60,13 @@ class Sec7 extends StatelessWidget {
                         text: "NO",
                         size: ScreenUtil().setSp(30),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          CupertinoPageRoute(
+                              builder: (context) => Warning()),
+                        );
+                      },
                     ),
                   ),
                   ElevatedButton(
@@ -77,33 +85,11 @@ class Sec7 extends StatelessWidget {
                       size: ScreenUtil().setSp(30),
                       color: Colors.white,
                     ),
-                    onPressed: () async {
-                      try{
-                        final storage = FlutterSecureStorage();
-                        String cards = await storage.read(key: 'cards');
-                        if(cards!=null){
-                          List fetchedCards = cards.split(';');
-                          fetchedCards.add(jsonEncode(cardDetails));
-                          String listStr = "";
-                          fetchedCards.forEach((element) {
-                            listStr += element+";";
-                          });
-                          print(listStr);
-                          await storage.write(key: 'cards', value: listStr.substring(0, listStr.length - 1));
-                        }
-                        else{
-                          String listStr = jsonEncode(cardDetails);
-                          print(listStr);
-                          await storage.write(key: 'cards', value: listStr);
-                        }
-                        Navigator.push(
-                          context,
-                          CupertinoPageRoute(builder: (context) => Home()),
-                        );
-                      }
-                      catch(e){
-                        print(e);
-                      }
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        CupertinoPageRoute(builder: (context) => Congratulations(cardDetails: cardDetails,)),
+                      );
                     },
                   ),
                 ],

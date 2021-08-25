@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'package:chainlock/screens/warning.dart';
+import 'package:chainlock/widgets/toast.dart';
 import 'package:crypto/crypto.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +40,6 @@ class _QRScreenState extends State<QRScreen> {
   validateQRCode(String code) async {
     ///validate back side
     var uri = Uri.dataFromString(code);
-    print("scanned " + code);
 
     String queryParams;
     try {
@@ -89,12 +90,8 @@ class _QRScreenState extends State<QRScreen> {
       var response = await http.get(Uri.parse(url));
       if (response.statusCode == 200 || response.statusCode == 201) {
         var body = jsonDecode(response.body);
-        print(body);
-        print("SHA512 is: " + clcSha512);
 
         if (body['valid']) {
-          print('online validation successful');
-          debugPrint('certificate is :' + body["certificate"]);
           _dialog.hide();
 
           clcElements = clc.split(';');
@@ -111,15 +108,19 @@ class _QRScreenState extends State<QRScreen> {
           );
         } else {
           _dialog.hide();
-          print("online validation failed");
+          Navigator.push(
+            context,
+            CupertinoPageRoute(
+                builder: (context) => Warning()),
+          );
         }
       } else {
         _dialog.hide();
-        print(response.statusCode);
+        ToastBar(text: 'Response :'+response.statusCode.toString(),color: Colors.red).show();
       }
     } catch (e) {
       _dialog.hide();
-      print("Error " + e.toString());
+      ToastBar(text: 'Something went wrong! '+e.toString(),color: Colors.red).show();
     }
   }
 
@@ -160,7 +161,7 @@ class _QRScreenState extends State<QRScreen> {
           Expanded(
             child: Column(
               children: [
-                result != null ? Text(result.code) : Text("Scanning..."),
+                // result != null ? Text(result.code) : Text("Scanning..."),
                 CheckboxListTile(
                     title: CustomText(
                       text: 'Please scan one side of the Card',
