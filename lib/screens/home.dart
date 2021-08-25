@@ -213,7 +213,7 @@ class _HomeState extends State<Home> {
                         );
                       }
                       else{
-                        return Center(child: LinearProgressIndicator(),);
+                        return Center(child: SizedBox.shrink(),);
                       }
                     },
                   );
