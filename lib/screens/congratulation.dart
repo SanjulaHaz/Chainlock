@@ -136,13 +136,11 @@ class Congratulations extends StatelessWidget {
                         fetchedCards.forEach((element) {
                           listStr += element+";";
                         });
-                        print(listStr);
                         await storage.write(key: 'cards', value: listStr.substring(0, listStr.length - 1));
                       }
                     }
                     else{
                       String listStr = jsonEncode(cardDetails);
-                      print(listStr);
                       await storage.write(key: 'cards', value: listStr);
                     }
                     Navigator.of(context).pushAndRemoveUntil(CupertinoPageRoute(builder: (context) =>
